@@ -1,0 +1,25 @@
+version: 0.2
+phases:
+  install: # Install kubectl and Helm
+    commands:
+      - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.28.0/bin/linux/amd64/kubectl
+      - chmod +x kubectl
+      - mv ./kubectl /usr/local/bin/kubectl
+      - curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      - helm repo add stable https://charts.helm.sh/stable && helm repo update
+
+  pre_build: # Check helm version and Add kubeconfig to access to EKS cluster and check readiness of the cluster
+    commands:
+      - "helm version"
+      - "mkdir ~/.kube/"
+      - "aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $AWS_CLUSTER_NAME"
+      - "chmod 0600 ~/.kube/config"
+      - "aws sts get-caller-identity"
+
+  build: # Deploy app via Helm.
+    commands:
+      - "helm upgrade -i $APP_NAME ./helm_charts -f helm_charts/values.yaml --set image.repository=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME --set image.tag=$IMAGE_TAG"
+
+  post_build:
+    commands:
+      - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"

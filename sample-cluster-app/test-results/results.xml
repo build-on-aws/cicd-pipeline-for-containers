@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.083" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-11-27T17:38:42" tests="0" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Testing sample app" timestamp="2023-11-27T17:38:42" tests="2" file="/Users/ioamous/Desktop/code_repositories/cicd_eks_tutorial/sample-cluster-app/test/test.js" time="0.082" failures="0">
+    <testcase name="Testing sample app Testing default page" time="0.042" classname="Testing default page">
+    </testcase>
+    <testcase name="Testing sample app Testing healthcheck" time="0.002" classname="Testing healthcheck">
+    </testcase>
+  </testsuite>
+</testsuites>

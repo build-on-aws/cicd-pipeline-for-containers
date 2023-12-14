@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm --prefix ./sample-cluster-app install
+  pre_build:
+    commands:
+      - echo Install linting tool...
+      - npm --prefix ./sample-cluster-app install eslint
+      - npm --prefix ./sample-cluster-app init --force --yes
+  build:
+    commands:
+      - echo Linting the code...
+      - cd sample-cluster-app
+      - npx eslint

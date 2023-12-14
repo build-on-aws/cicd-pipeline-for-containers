@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm --prefix ./sample-cluster-app install
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the Node.js code
+      - npm --prefix ./sample-cluster-app test
+  post_build:
+    commands:
+      - echo Build completed on `date`
