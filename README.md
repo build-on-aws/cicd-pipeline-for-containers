@@ -5,7 +5,7 @@ This code repository is part of the Amazon EKS Cluster Setup tutorial: "Building
 
 This repository is dedicated to setting up an end-to-end CI/CD pipeline for hosting and testing application code, building a container image from the code, pushing and storing the container image to [Elastic Container Registry](https://aws.amazon.com/ecr/), and deploying this container on EKS as a deployment. It includes the following components:
 
-[[images/orverview.jpg]]
+![GitHub Image](/images/orverview.png)
 
 * **Preparing the dedicated VPC for the cluster**: As a basis, we created a dedicated [Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) to host the EKS cluster. The VPC uses the CIDR `10.0.0.0/16`, 3 private, and 3 public subnets. We create also an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) and a [NAT Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html). You can find the VPC configuration in the [ekc_cluster.tf file](https://github.com/build-on-aws/cicd-pipeline-for-containers/blob/66044ac88b76edd0ca9fbf74de902836751956c4/eks_cluster.tf#L12).
 * **Creating the EKS Cluster**: We built an [EKS Cluster](https://github.com/build-on-aws/cicd-pipeline-for-containers/blob/66044ac88b76edd0ca9fbf74de902836751956c4/eks_cluster.tf#L39) with a managed node group with a minimum size 1 and maximum size 5, and one instance type of `t3.small`. 
