@@ -7,7 +7,7 @@
     "aws-sdk": "2.1518.0",
     "express": "4.19.2",
     "express-generator": "4.2.0",
-    "npm": "^10.2.5"
+    "npm": "^10.5.2"
   },
   "devDependencies": {
     "ansi-regex": "5.0.1",
